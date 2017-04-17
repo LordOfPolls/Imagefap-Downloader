@@ -1,6 +1,8 @@
 # What does this do?
 
-This script downloads every image it can find from an imagefap gallery, simply specify a gallery and itll begin its download( ͡° ͜ʖ ͡°)
+This script downloads every image it can find from an imagefap gallery, simply specify a gallery and itll begin its download
+
+( ͡° ͜ʖ ͡°)
 
 # Disclaimer
 
