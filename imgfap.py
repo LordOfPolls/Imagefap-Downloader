@@ -1,6 +1,7 @@
 import urllib.request
 import re
 import os
+import time
 
 URL = ""
 pnum = ""
@@ -12,18 +13,20 @@ def mainLoop():
     global pnum
 
     URL = input("Please input the gallery url: ")
-    url = "http://www.imagefap.com/pictures/"
-    galleryId = URL.replace(url,"")
+    url = "www.imagefap.com/pictures/"
+    galleryId = URL.split(url)[-1]
     galleryId = galleryId.split("/")[0]
-    URL = "{}{}/?grid={}&view=2".format(url, galleryId, galleryId)
+    URL = F"https://{url}{galleryId}/?grid={galleryId}&view=2"
     validate(URL)
     
 def validate(URL):
     print("Processing...")
     try:
-        html =  urllib.request.urlopen(URL).read()
+        html = urllib.request.urlopen(URL).read()
     except Exception as e:
-            print("Unexpected Error: ", exc_info()[0], e)
+        print(f"Unexpected Error for {URL}: {e}")
+        time.sleep(5)
+        return
     getImages(html)
 
 def getImages(html):
@@ -41,7 +44,7 @@ def getImages(html):
 def download(urls):
     image = urls[0]
     image = image[0]
-    dir_name = str(image).split("/")[-3]
+    dir_name = "Downloaded_imagefap"
     try:
         os.mkdir(dir_name)
     except:
@@ -49,10 +52,10 @@ def download(urls):
     print("Downloading {} images".format(str(len(urls))))
     for image in urls:
         image = str(image[0])
-        name = image.split("/")[-1]
+        name = image.split("/")[-1].split("?end")[0]
         with urllib.request.urlopen(image) as f:
             imageContent = f.read()
-            with open(dir_name + '/' + name, "wb") as f:
+            with open(f"{dir_name}/{name}", "wb") as f:
                 f.write(imageContent)
     
         
