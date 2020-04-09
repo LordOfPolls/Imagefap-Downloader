@@ -12,4 +12,3 @@ I do not own nor am i afiliated with imagefap, this is just a script to help peo
 
 [Download Python](https://www.python.org/downloads/release/python-352/)
 
-[Download for windows](https://github.com/DNAGamer/Imagefap-Downloader/blob/master/imgfap.exe?raw=true)
